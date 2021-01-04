@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MadPay724.Data.DatabaseContext;
+using MadPay724.Data.Infrastraucture;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MadPay724.Presentation.Controllers
@@ -10,6 +12,15 @@ namespace MadPay724.Presentation.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+
+        private readonly IUnitOfWork<ModpayDbContext> _db;
+        public ValuesController(IUnitOfWork<ModpayDbContext> dbContext)
+        {
+            _db = dbContext;
+        }
+
+
+
         // GET api/values
         [HttpGet]
         public async Task<ActionResult<IEnumerable<string>>> Get()
